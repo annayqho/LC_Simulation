@@ -1,15 +1,14 @@
 """ For z = 0.2, r-band, generate a SN Ia light curve """
 
+import numpy as np
 import sncosmo
+from astropy.table import Table
 
-# I'm using the "Fitting a light curve" tutorial
-data = sncosmo.load_example_data()
-print(data)
+# choose a built-in source
+model = sncosmo.Model(source='hsiao')
 
-# OK, let's only take the sdssr data
-data_r = data[data['band'] == 'sdssr']
-print(data_r)
+# set model parameters
+model.set(z=0.2)
 
-# OK, that's just how to plot the example data.
-
-
+# plot
+sncosmo.plot_lc(model=model, bands=['sdssr'])
